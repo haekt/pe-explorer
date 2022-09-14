@@ -15,27 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="file.cpp">
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\dos_header.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="dos_header.cpp">
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\image_import_descriptor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="NT_header.cpp">
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="image_section_header.cpp">
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\NT_header.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="image_des.cpp">
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\NT_section_h.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\RAW_to_RVA.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="hxdex.h">
+    <ClInclude Include="..\..\..\Desktop\pe-explorer\hxd\hxdex.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,11 +1,11 @@
 #include "hxdex.h"
 
-void NT_header(IMAGE_NT_HEADERS* NT_header){ // ******
+void print_nt_h(IMAGE_NT_HEADERS* NT_header){ // ******
 	
 
 	int bittype = 0;
 
-	IMAGE_NT_HEADERS32* NT_header32;
+	IMAGE_NT_HEADERS32* NT_header32 = NULL;
 	
 	int bit = NT_header->FileHeader.Machine;
 	if (0x014c == bit)
@@ -22,7 +22,7 @@ void NT_header(IMAGE_NT_HEADERS* NT_header){ // ******
 
 
 
-	printf("\n============== [NT Header] ===============\n");
+	printf("\n================= [NT Header] ==================\n");
 	printf("-[%08X] ", offset_move(0));
 	printf("- Signature[4byte]\t\t\t\t: %08X\n", NT_header->Signature);
 	offset_move(sizeof(NT_header->Signature));
@@ -120,40 +120,42 @@ void NT_header(IMAGE_NT_HEADERS* NT_header){ // ******
 	printf("---------------------------------------------------\n");
 
 
-	printf("\n----------------- (DataDirectory) -----------------\n");
+	printf("\n----------------- (DataDirectory) -----------------\n\n");
 	printf("-[%08X] ", offset_move(0));
-	printf("-EXPORT Directory [%dbyte]\t\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[0]), NT_header->OptionalHeader.DataDirectory[0]);
+	printf("- EXPORT Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[0]), NT_header->OptionalHeader.DataDirectory[0].Size, NT_header->OptionalHeader.DataDirectory[0].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[0])));
-	printf("-IMPORT Directory [%dbyte]\t\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[1]), NT_header->OptionalHeader.DataDirectory[1]);
+	printf("- IMPORT Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[1]), NT_header->OptionalHeader.DataDirectory[1].Size, NT_header->OptionalHeader.DataDirectory[1].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[1])));
-	printf("-RESOURCE Directory [%dbyte]\t\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[2]), NT_header->OptionalHeader.DataDirectory[2]);
+	printf("- RESOURCE Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[2]), NT_header->OptionalHeader.DataDirectory[2], NT_header->OptionalHeader.DataDirectory[2].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[2])));
-	printf("-EXCEPTION Directory [%dbyte]\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[3]), NT_header->OptionalHeader.DataDirectory[3]);
+	printf("- EXCEPTION Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[3]), NT_header->OptionalHeader.DataDirectory[3], NT_header->OptionalHeader.DataDirectory[3].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[3])));
-	printf("-SECURITY Directory [%dbyte]\t\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[4]), NT_header->OptionalHeader.DataDirectory[4]);
+	printf("- SECURITY Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[4]), NT_header->OptionalHeader.DataDirectory[4], NT_header->OptionalHeader.DataDirectory[4].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[4])));
-	printf("-BASERELOC Directory [%dbyte]\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[5]), NT_header->OptionalHeader.DataDirectory[5]);
+	printf("- BASERELOC Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[5]), NT_header->OptionalHeader.DataDirectory[5], NT_header->OptionalHeader.DataDirectory[5].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[5])));
-	printf("-DEBUG Directory [%dbyte]\t\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[6]), NT_header->OptionalHeader.DataDirectory[6]);
+	printf("- DEBUG Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[6]), NT_header->OptionalHeader.DataDirectory[6], NT_header->OptionalHeader.DataDirectory[6].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[6])));
-	printf("-COPYRIGHT Directory [%dbyte]\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[7]), NT_header->OptionalHeader.DataDirectory[7]);
+	printf("- COPYRIGHT Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[7]), NT_header->OptionalHeader.DataDirectory[7], NT_header->OptionalHeader.DataDirectory[7].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[7])));
-	printf("-GLOBAL Directory [%dbyte]\t\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[8]), NT_header->OptionalHeader.DataDirectory[8]);
+	printf("- GLOBAL Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[8]), NT_header->OptionalHeader.DataDirectory[8], NT_header->OptionalHeader.DataDirectory[8].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[8])));
-	printf("-TLS Directory [%dbyte]\t\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[9]), NT_header->OptionalHeader.DataDirectory[9]);
+	printf("- TLS Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[9]), NT_header->OptionalHeader.DataDirectory[9], NT_header->OptionalHeader.DataDirectory[9].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[9])));
-	printf("-LOAD_CONFIG Directory [%dbyte]\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[10]), NT_header->OptionalHeader.DataDirectory[10]);
+	printf("- LOAD_CONFIG Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[10]), NT_header->OptionalHeader.DataDirectory[10], NT_header->OptionalHeader.DataDirectory[10].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[10])));
-	printf("-BOUND_IMPORT Directory [%dbyte]\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[11]), NT_header->OptionalHeader.DataDirectory[11]);
+	printf("- BOUND_IMPORT Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[11]), NT_header->OptionalHeader.DataDirectory[11], NT_header->OptionalHeader.DataDirectory[11].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[11])));
-	printf("-IAT Directory [%dbyte]\t\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[12]), NT_header->OptionalHeader.DataDirectory[12]);
+	printf("- IAT Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[12]), NT_header->OptionalHeader.DataDirectory[12], NT_header->OptionalHeader.DataDirectory[12].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[12])));
-	printf("-DELAY_IMPORT Directory [%dbyte]\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[13]), NT_header->OptionalHeader.DataDirectory[13]);
+	printf("- DELAY_IMPORT Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[13]), NT_header->OptionalHeader.DataDirectory[13], NT_header->OptionalHeader.DataDirectory[13].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[13])));
-	printf("-COM_DESCRIPTOR Directory [%dbyte]\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[14]), NT_header->OptionalHeader.DataDirectory[14]);
+	printf("- COM_DESCRIPTOR Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[14]), NT_header->OptionalHeader.DataDirectory[14], NT_header->OptionalHeader.DataDirectory[14].VirtualAddress);
 	printf("-[%08X] ", offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[14])));
-	printf("-Reserved Directory [%dbyte]\t\t\t: %016X\n", sizeof(NT_header->OptionalHeader.DataDirectory[15]), NT_header->OptionalHeader.DataDirectory[15]);
+	printf("- Reserved Directory [%dbyte]\n\n\t- Size \t\t : %08X\n\t- VirtualAddress : %08X\n\n", sizeof(NT_header->OptionalHeader.DataDirectory[15]), NT_header->OptionalHeader.DataDirectory[15], NT_header->OptionalHeader.DataDirectory[15].VirtualAddress);
 	offset_move(sizeof(NT_header->OptionalHeader.DataDirectory[15]));
 	printf("---------------------------------------------------\n\n\n");
-	printf("=========================================\n");
+	printf("=====================================================\n");
+
+
 }

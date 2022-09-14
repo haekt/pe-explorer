@@ -1,6 +1,6 @@
 #include "hxdex.h"
 
-void print_dos_header(_IMAGE_DOS_HEADER* dos_header){
+void print_dos_h(_IMAGE_DOS_HEADER* dos_header){
 
 
 	printf("============= [Dos Header] ==============\n");
@@ -66,7 +66,7 @@ void print_dos_header(_IMAGE_DOS_HEADER* dos_header){
 	printf("- e_res2[9][2byte]\t\t\t: %04X\n", dos_header->e_res2[9]);
 	printf("-[%08X] ", offset_move(sizeof(dos_header->e_res2[9])));
 	printf("- e_lfanew[4byte]\t\t\t: %08X\n", dos_header->e_lfanew);
-	offset_define(dos_header->e_lfanew);
+	offset=dos_header->e_lfanew;
 	printf("=========================================\n");
 	
 	

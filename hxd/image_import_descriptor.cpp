@@ -1,6 +1,6 @@
 #include "hxdex.h"
 
-void Image_des(_IMAGE_IMPORT_DESCRIPTOR *import_des)
+void print_image_import_descriptor(_IMAGE_IMPORT_DESCRIPTOR *import_des)
 {
 	printf("\n\n\n============== [IMAGE_IMPORT_DESCRIPTER] ================\n");
 	printf("-[%08X] ", offset_move(0));

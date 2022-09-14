@@ -18,11 +18,22 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\dos_header.cpp" />
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\image_import_descriptor.cpp" />
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\main.cpp" />
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\NT_header.cpp" />
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\NT_section_h.cpp" />
+    <ClCompile Include="..\..\..\Desktop\pe-explorer\hxd\RAW_to_RVA.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Desktop\pe-explorer\hxd\hxdex.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ec0d71ea-9ad0-4a38-87b2-bc2af4305436}</ProjectGuid>
-    <RootNamespace>hxd</RootNamespace>
+    <ProjectGuid>{85d20bf1-2187-40a7-9fb6-7d21a3778168}</ProjectGuid>
+    <RootNamespace>pe</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -101,7 +112,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -126,17 +137,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="file.cpp" />
-    <ClCompile Include="dos_header.cpp" />
-    <ClCompile Include="image_des.cpp" />
-    <ClCompile Include="image_section_header.cpp" />
-    <ClCompile Include="NT_header.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="hxdex.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
