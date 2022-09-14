@@ -1,1 +1,2 @@
 C:\Users\KOREAIT\source\repos\pe\x64\Debug\pe.exe
+C:\Users\KOREAIT\Desktop\pe-explorer\hxd\x64\Debug\pe.exe
